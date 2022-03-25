@@ -11,7 +11,7 @@ A plug and play GraphQL API for Wagtail, powered by
 1. Install Strawberry Wagtail
 
 ```bash
-pip install strawberry-graphql
+pip install strawberry-wagtail
 ```
 
 2. Add `strawberry-wagtail` to your `INSTALLED_APPS`:
