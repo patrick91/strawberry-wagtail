@@ -1,0 +1,19 @@
+[tool.poetry]
+authors = ["Patrick Arminio <patrick.arminio@gmail.com>"]
+description = ""
+license = "MIT"
+name = "strawberry-wagtail-example"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+strawberry_wagtail = {path = "../", develop = true}
+wagtail = "^2.16.1"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.1.0", allow-prereleases = true}
+mypy = "^0.941"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

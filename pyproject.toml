@@ -1,0 +1,56 @@
+[tool.poetry]
+authors = ["Patrick Arminio <patrick.arminio@gmail.com>"]
+description = ""
+include = ["strawberry_wagtail/py.typed"]
+license = "MIT"
+name = "strawberry-wagtail"
+packages = [{include = "strawberry_wagtail"}]
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+strawberry-graphql = "^0.103.1"
+strawberry-graphql-django = "^0.2.5"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.1.0", allow-prereleases = true}
+flake8 = "^4.0.1"
+mypy = "^0.941"
+pytest = "^7.1.1"
+pytest-django = "^4.5.2"
+wagtail = "^2.16.1"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.django_settings"
+addopts = "--no-migrations"
+pythonpath = "."
+testpaths = ["tests"]
+xfail_strict = true
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+combine_as_imports = true
+combine_star = true
+indent = 4
+known_django = ["django"]
+known_first_party = ["strawberry"]
+known_graphql = ["graphql"]
+known_pytest = ["pytest"]
+lines_after_imports = 2
+profile = "black"
+sections = ["FUTURE", "STDLIB", "PYTEST", "THIRDPARTY", "DJANGO", "GRAPHQL", "FIRSTPARTY", "LOCALFOLDER"]
+src_paths = ["strawberry", "tests", "scripts"]
+
+[tool.pyright]
+exclude = ["**/__pycache__"]
+include = ["strawberry"]
+pythonVersion = "3.7"
+reportMissingImports = true
+reportMissingTypeStubs = false
+stubPath = ""
