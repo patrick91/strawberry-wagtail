@@ -1,6 +1,10 @@
 from functools import cached_property
 
-from wagtail.core.models import Page
+
+try:
+    from wagtail.models import Page
+except ImportError:
+    from wagtail.core.models import Page
 
 from django.apps import apps
 

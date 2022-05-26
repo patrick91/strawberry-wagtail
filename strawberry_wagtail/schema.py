@@ -2,8 +2,13 @@ import re
 import types
 from typing import Iterable, List, Optional, Type
 
-from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
+
+try:
+    from wagtail.fields import StreamField
+    from wagtail.models import Page
+except ImportError:
+    from wagtail.core.fields import StreamField
+    from wagtail.core.models import Page
 
 from django.db.models.fields import Field
 
@@ -23,7 +28,11 @@ def to_snake_case(name: str) -> str:
 
 def _register_fields():
     from strawberry_django.fields.types import field_type_map
-    from wagtail.core.fields import RichTextField
+
+    try:
+        from wagtail.fields import RichTextField
+    except ImportError:
+        from wagtail.core.fields import RichTextField
 
     field_type_map[RichTextField] = HTML
 
