@@ -1,28 +1,40 @@
-[tool.poetry]
-authors = ["Patrick Arminio <patrick.arminio@gmail.com>"]
+[tool.pdm]
+
+[project]
+# PEP 621 project metadata
+# See https://www.python.org/dev/peps/pep-0621/
+authors = [
+    {name = "Patrick Arminio", email = "patrick.arminio@gmail.com"},
+]
+license = {text = "MIT"}
+requires-python = ">=3.7,<4.0"
+dependencies = [
+    "strawberry-graphql<1.0.0,>=0.103.1",
+    "strawberry-graphql-django<1.0.0,>=0.2.5",
+]
 description = ""
-include = ["strawberry_wagtail/py.typed"]
-license = "MIT"
 name = "strawberry-wagtail"
-packages = [{include = "strawberry_wagtail"}]
 version = "0.1.0"
+# include = ["strawberry_wagtail/py.typed"]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-strawberry-graphql = "^0.103.1"
-strawberry-graphql-django = "^0.2.5"
+[project.urls]
 
-[tool.poetry.dev-dependencies]
-black = {version = "^22.1.0", allow-prereleases = true}
-flake8 = "^4.0.1"
-mypy = "^0.941"
-pytest = "^7.1.1"
-pytest-django = "^4.5.2"
-wagtail = "^2.16.1"
+[tool.pdm.dev-dependencies]
+dev = [
+    "black<23.0.0,>=22.1.0",
+    "flake8<5.0.0,>=4.0.1",
+    "mypy<1.0,>=0.941",
+    "pytest<8.0.0,>=7.1.1",
+    "pytest-django<5.0.0,>=4.5.2",
+    "wagtail<3.0.0,>=2.16.1",
+]
+
+[tool.pdm.build]
+includes = ["strawberry_wagtail", "strawberry_wagtail/py.typed"]
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.django_settings"

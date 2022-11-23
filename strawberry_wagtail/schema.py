@@ -9,7 +9,7 @@ from django.db.models.fields import Field
 
 import strawberry
 import strawberry.django
-from strawberry.django import auto
+from strawberry import auto
 from strawberry.utils.str_converters import capitalize_first, to_camel_case
 
 from .scalars import HTML

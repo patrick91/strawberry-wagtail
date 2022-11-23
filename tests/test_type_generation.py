@@ -21,7 +21,7 @@ def test_convert_type():
         scalar HTML
 
         type Query {
-          blogPage(pk: ID): BlogPage
+          blogPage(pk: ID!): BlogPage
           blogPages: [BlogPage!]!
         }
         """
@@ -69,7 +69,7 @@ def test_convert_type_with_streamfield():
         scalar HTML
 
         type Query {
-          cmsPage(pk: ID): CMSPage
+          cmsPage(pk: ID!): CMSPage
           cmsPages: [CMSPage!]!
         }
         """
