@@ -7,12 +7,10 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 
 import strawberry
-import strawberry.django
 from strawberry.union import StrawberryUnion
 from strawberry.utils.str_converters import capitalize_first, to_camel_case
 
 from .scalars import HTML
-
 
 def _make_type(
     class_name: str, value_field_name: str, value_type: Type, from_data: Callable

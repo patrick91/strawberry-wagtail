@@ -8,12 +8,11 @@ from wagtail.core.models import Page
 from django.db.models.fields import Field
 
 import strawberry
-import strawberry.django
-from strawberry import auto
 from strawberry.utils.str_converters import capitalize_first, to_camel_case
 
 from .scalars import HTML
 from .stream_field import get_resolver_for_stream_field, get_type_for_stream_block
+from .resolvers import get_resolver_for_multiple_models, get_resolver_for_single_model
 
 
 def to_snake_case(name: str) -> str:
@@ -39,7 +38,7 @@ def _get_field_type(field: Field, model_class: Type[Page]) -> Type:
         stream_block_type = get_type_for_stream_block(field.stream_block, name)
         return stream_block_type
 
-    return auto
+    return str
 
 
 def _create_type(model_class: Type[Page]) -> Type:
@@ -66,7 +65,7 @@ def _create_type(model_class: Type[Page]) -> Type:
 
     cls = types.new_class(name, (), {}, lambda ns: ns.update(namespace))
 
-    return strawberry.django.type(model_class, name=name)(cls)
+    return strawberry.type(name=name)(cls)
 
 
 def get_schema_from_models(models: Iterable[Type[Page]]) -> strawberry.Schema:
@@ -81,8 +80,18 @@ def get_schema_from_models(models: Iterable[Type[Page]]) -> strawberry.Schema:
         name = to_snake_case(model_class.__name__)
 
         fields += [
-            (name, Optional[model_type], strawberry.django.field()),
-            (f"{name}s", List[model_type], strawberry.django.field()),
+            (
+                name,
+                Optional[model_type],
+                strawberry.field(resolver=get_resolver_for_single_model(model_class)),
+            ),
+            (
+                f"{name}s",
+                List[model_type],
+                strawberry.field(
+                    resolver=get_resolver_for_multiple_models(model_class)
+                ),
+            ),
         ]
 
         for field_name, type_, value in fields:

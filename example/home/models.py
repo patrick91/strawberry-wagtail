@@ -5,6 +5,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
+from wagtail.models import TranslatableMixin
 
 from django.db import models
 

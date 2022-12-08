@@ -1,8 +1,10 @@
 [tool.pdm]
 [tool.pdm.dev-dependencies]
 dev = [
-  "black<23.0.0,>=22.1.0",
-  "mypy<1.0,>=0.941",
+    "black<23.0.0,>=22.1.0",
+    "mypy<1.0,>=0.941",
+    "-e file:///${PROJECT_ROOT}/..#egg=strawberry-wagtail",
+    "pdbpp>=0.10.3",
 ]
 
 [tool.pdm.build]
@@ -18,8 +20,8 @@ authors = [
   {name = "Patrick Arminio", email = "patrick.arminio@gmail.com"},
 ]
 dependencies = [
-  "wagtail<5.0.0,>=4.1.0",
-  "strawberry-wagtail @ file:///${PROJECT_ROOT}/..",
+    "wagtail<5.0.0,>=4.1.0",
+    "strawberry-wagtail @ file:///${PROJECT_ROOT}/..",
 ]
 description = ""
 dynamic = ["dependencies"]
@@ -29,3 +31,5 @@ requires-python = ">=3.10,<4.0"
 version = "0.1.0"
 
 [project.urls]
+
+[project.optional-dependencies]
