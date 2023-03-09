@@ -10,9 +10,8 @@ on:
   pull_request:
     branches: [main]
     paths-ignore:
-        - "example/**"
-        - "README.md"
-
+      - "example/**"
+      - "README.md"
 
 jobs:
   unit-tests:
@@ -38,11 +37,4 @@ jobs:
         run: pdm install
 
       - name: Run Tests
-        run: pdm run pytest -n auto --cov=strawberry_wagtail --cov-report=xml -n auto --showlocals -vv tests
-
-      - uses: codecov/codecov-action@v3
-        if: ${{ always() }}
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-          verbose: true
+        run: pdm run pytest --showlocals -vv tests
