@@ -13,16 +13,14 @@ def test_convert_type():
         == textwrap.dedent(
             """
         type BlogPage {
-          id: ID!
+          id: String!
           title: String!
-          body: HTML!
+          body: String!
         }
 
-        scalar HTML
-
         type Query {
-          blogPage(pk: ID!): BlogPage
-          blogPages: [BlogPage!]!
+          blogPage(id: Int!): BlogPage
+          blogPages(locale: String = null): [BlogPage!]!
         }
         """
         ).strip()
@@ -37,7 +35,7 @@ def test_convert_type_with_streamfield():
         == textwrap.dedent(
             """
         type CMSPage {
-          id: ID!
+          id: String!
           title: String!
           body: [CMSPageBody!]!
         }
@@ -69,8 +67,8 @@ def test_convert_type_with_streamfield():
         scalar HTML
 
         type Query {
-          cmsPage(pk: ID!): CMSPage
-          cmsPages: [CMSPage!]!
+          cmsPage(id: Int!): CMSPage
+          cmsPages(locale: String = null): [CMSPage!]!
         }
         """
         ).strip()
