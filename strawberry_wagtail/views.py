@@ -1,4 +1,4 @@
-from functools import cached_property
+from strawberry_wagtail.utils import cached_property
 
 from wagtail.core.models import Page
 

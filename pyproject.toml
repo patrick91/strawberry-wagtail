@@ -11,6 +11,7 @@ requires-python = ">=3.7,<4.0"
 dependencies = [
     "strawberry-graphql<1.0.0,>=0.103.1",
     "strawberry-graphql-django<1.0.0,>=0.2.5",
+    "backports-cached-property>=1.0.2",
 ]
 description = ""
 name = "strawberry-wagtail"
